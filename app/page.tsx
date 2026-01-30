@@ -6,7 +6,7 @@ import { Note } from "@/types/Note";
 
 
 export default function Home() {
-  const [note, setNotes] = useState<Note[]>([])
+  const [notes, setNotes] = useState<Note[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -25,9 +25,28 @@ export default function Home() {
     }
   }
 
+  if(loading) {
+    return <p>Carregando...</p>
+  }
+
   return (
-    <>
-    <p>A</p>
-    </>
+    <main className="p-32">
+      <h1>StickIt!</h1>
+
+      {notes.length === 0 && <p>Nenhuma nota ainda</p>}
+    
+      <ul>
+        {notes.map(note => (
+          <li key={note.id} className="mb-16">
+            <h3>{note.title}</h3>
+            <p>{note.content}</p>
+
+            <button onClick={() => handleDelete(note.id)} className="cursor-pointer">
+              Excluir
+            </button>
+          </li>
+        ))}
+      </ul>
+    </main>
   );
 }
