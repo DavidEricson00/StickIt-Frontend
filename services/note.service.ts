@@ -19,7 +19,7 @@ export async function updateNote(id:number, note:Note): Promise<Note> {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            title: note.color,
+            color: note.color,
             content: note.content
         })
     })
@@ -41,14 +41,16 @@ export async function deleteNote(id: number) {
     }
 }
 
-export async function createNote(note:Note): Promise<Note> {
+export async function createNote(
+    note: Omit<Note, "id">
+): Promise<Note> {
     const response = await fetch(`${API_URL}/notes`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            title: note.color,
+            color: note.color,
             content: note.content
         })
     })
