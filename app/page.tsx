@@ -2,17 +2,19 @@
 
 import { getNoteColorHex } from "@/utils/getNoteColorHex";
 import { useEffect, useState } from "react";
-import { getNotes, createNote, deleteNote } from "@/services/note.service";
+import { getNotes, createNote, deleteNote, updateNote } from "@/services/note.service";
 import { Note } from "@/types/Note";
 import { NoteColor } from "@/types/NoteColor";
 import Sidebar from "@/components/SideBar";
 import NoteCard from "@/components/NoteCard";
-
+import NoteModal from "@/components/NoteModal";
 
 export default function Home() {
   const [notes, setNotes] = useState<Note[]>([])
   const [loading, setLoading] = useState(true)
-  const [selectedColor, setSelectedColor] = useState<NoteColor>(NoteColor.YELLOW)
+  const [selectedColor, setSelectedColor] = useState<NoteColor>(NoteColor.GREEN)
+  const [selectedNote, setSelectedNote] = useState<Note | null>(null)
+  const [editedContent, setEditedContent] = useState("")
 
   useEffect(() => {
     getNotes()
@@ -21,15 +23,7 @@ export default function Home() {
       .finally(() => setLoading(false))
   }, [])
 
-  async function handleDelete(id: number) {
-    try {
-      await deleteNote(id)
-      setNotes(prev => prev.filter(note => note.id !== id))
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
+  
   async function handleCreate() {
     try {
       const newNote = await createNote({
@@ -41,7 +35,43 @@ export default function Home() {
     } catch (error) {
       console.error(error)
     }
-    
+  }
+
+  async function handleSave() {
+    if (!selectedNote) return
+
+    try {
+      const updated = await updateNote (selectedNote.id, {
+        ...selectedNote,
+        content: editedContent
+      })
+
+      setNotes(prev =>
+        prev.map(note =>
+          note.id == updated.id ? updated : note
+        )
+      )
+
+      setSelectedNote(null)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  async function handleDelete(id: number) {
+    try {
+      await deleteNote(id)
+      setNotes(prev => prev.filter(note => note.id !== id))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  async function handleDeleteFromModal() {
+    if (!selectedNote) return
+
+    await handleDelete(selectedNote.id)
+    setSelectedNote(null)
   }
 
   if(loading) {
@@ -77,13 +107,24 @@ export default function Home() {
               <NoteCard
               key={note.id}
               note={note}
-              onClick={() => console.log("Clicou na nota")}
+              onClick={() => {
+                setSelectedNote(note)
+                setEditedContent(note.content)
+              }}
             />
             ))}
         </ul>
-
     </main>
+    {selectedNote && (
+      <NoteModal
+        note={selectedNote}
+        content={editedContent}
+        onChange={setEditedContent}
+        onSave={handleSave}
+        onDelete={handleDeleteFromModal}
+        onClose={() => setSelectedNote(null)}
+      />
+    )}
     </div>
-
   );
 }
