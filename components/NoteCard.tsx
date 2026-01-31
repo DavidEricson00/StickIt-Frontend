@@ -32,11 +32,11 @@ export default function NoteCard({ note, onClick }: NoteCardProps){
                     leading-relaxed
                     overflow-hidden
                     text-ellipsis
-                    line-clamp-6
+                    line-clamp-8
                     font-light
                 "
             >
-                {note.content}
+                {note.content || ""}
             </p>
         </div>
     )
