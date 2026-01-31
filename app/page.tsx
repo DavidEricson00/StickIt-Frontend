@@ -71,14 +71,15 @@ export default function Home() {
             justify-items-center
           "
         >
-          {notes.map(note => (
-            <NoteCard
+          {[...notes]
+            .sort((a, b) => b.id - a.id)
+            .map(note => (
+              <NoteCard
               key={note.id}
               note={note}
               onClick={() => console.log("Clicou na nota")}
             />
-          ))}
-
+            ))}
         </ul>
 
     </main>
