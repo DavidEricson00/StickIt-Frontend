@@ -41,22 +41,27 @@ export default function Home() {
         onCreate={() => console.log("criar nota com " + selectedColor )}
       />
 
-      <main className="pl-64 p-32 bg-zinc-50 min-h-screen">
-        <h1>StickIt!</h1>
+      <main className="pl-48 p-16 bg-zinc-100 min-h-screen">
+        <div className="mb-8">
+          <h1 className="text-4xl">Minhas notas</h1>
+        </div>
 
         {notes.length === 0 && <p>Nenhuma nota ainda</p>}
-      
-        <ul>
-          {notes.map(note => (
-            <li key={note.id} className="mb-16">
-              <p className="text-black" style={{ backgroundColor: getNoteColorHex(note.color) }}>{note.content}</p>
 
-              <button onClick={() => handleDelete(note.id)} className="cursor-pointer">
-                Excluir
-              </button>
-            </li>
-          ))}
-        </ul>
+        <div className="flex">
+          <ul>
+            {notes.map(note => (
+              <li key={note.id} className="mb-16">
+                <p className="text-black" style={{ backgroundColor: getNoteColorHex(note.color) }}>{note.content}</p>
+
+                <button onClick={() => handleDelete(note.id)} className="cursor-pointer">
+                  Excluir
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+
     </main>
     </div>
 
