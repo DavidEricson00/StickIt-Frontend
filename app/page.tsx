@@ -1,5 +1,6 @@
 "use client"
 
+import { getNoteColorHex } from "@/utils/getNoteColorHex";
 import { useEffect, useState } from "react";
 import { getNotes, createNote, deleteNote } from "@/services/note.service";
 import { Note } from "@/types/Note";
@@ -38,8 +39,7 @@ export default function Home() {
       <ul>
         {notes.map(note => (
           <li key={note.id} className="mb-16">
-            <h3>{note.title}</h3>
-            <p>{note.content}</p>
+            <p className="text-black" style={{ backgroundColor: getNoteColorHex(note.color) }}>{note.content}</p>
 
             <button onClick={() => handleDelete(note.id)} className="cursor-pointer">
               Excluir
