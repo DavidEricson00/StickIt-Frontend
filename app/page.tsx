@@ -6,6 +6,7 @@ import { getNotes, createNote, deleteNote } from "@/services/note.service";
 import { Note } from "@/types/Note";
 import { NoteColor } from "@/types/NoteColor";
 import Sidebar from "@/components/SideBar";
+import NoteCard from "@/components/NoteCard";
 
 
 export default function Home() {
@@ -41,26 +42,30 @@ export default function Home() {
         onCreate={() => console.log("criar nota com " + selectedColor )}
       />
 
-      <main className="pl-48 p-16 bg-zinc-100 min-h-screen">
+      <main className="pl-48 p-16 bg-zinc-50 min-h-screen">
         <div className="mb-8">
-          <h1 className="text-4xl">Minhas notas</h1>
+          <h1 className="text-4xl font-normal">Minhas Notas</h1>
         </div>
 
         {notes.length === 0 && <p>Nenhuma nota ainda</p>}
 
-        <div className="flex">
-          <ul>
-            {notes.map(note => (
-              <li key={note.id} className="mb-16">
-                <p className="text-black" style={{ backgroundColor: getNoteColorHex(note.color) }}>{note.content}</p>
+        <ul
+          className="
+            grid
+            grid-cols-[repeat(auto-fill,minmax(16rem,1fr))]
+            gap-9
+            justify-items-center
+          "
+        >
+          {notes.map(note => (
+            <NoteCard
+              key={note.id}
+              note={note}
+              onClick={() => console.log("Clicou na nota")}
+            />
+          ))}
 
-                <button onClick={() => handleDelete(note.id)} className="cursor-pointer">
-                  Excluir
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+        </ul>
 
     </main>
     </div>
