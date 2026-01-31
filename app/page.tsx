@@ -1,6 +1,5 @@
 "use client"
 
-import { getNoteColorHex } from "@/utils/getNoteColorHex";
 import { useEffect, useState } from "react";
 import { getNotes, createNote, deleteNote, updateNote } from "@/services/note.service";
 import { Note } from "@/types/Note";
@@ -73,11 +72,7 @@ export default function Home() {
     await handleDelete(selectedNote.id)
     setSelectedNote(null)
   }
-
-  if(loading) {
-    return <p>Carregando...</p>
-  }
-
+  
   return (
     <div>
       <Sidebar
@@ -91,7 +86,17 @@ export default function Home() {
           <h1 className="text-4xl font-normal">Minhas Notas</h1>
         </div>
 
-        {notes.length === 0 && <p>Nenhuma nota ainda</p>}
+        {loading && (
+          <p className="text-zinc-500 mt-4">
+            Carregando...
+          </p>
+        )}
+
+        {!loading && notes.length === 0 && (
+          <p className="text-zinc-500 mt-4">
+            Nenhuma nota ainda
+          </p>
+        )}
 
         <ul
           className="
