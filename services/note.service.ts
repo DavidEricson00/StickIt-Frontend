@@ -19,7 +19,7 @@ export async function updateNote(id:number, note:Note): Promise<Note> {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            title: note.title,
+            title: note.color,
             content: note.content
         })
     })
@@ -48,7 +48,7 @@ export async function createNote(note:Note): Promise<Note> {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            title: note.title,
+            title: note.color,
             content: note.content
         })
     })
