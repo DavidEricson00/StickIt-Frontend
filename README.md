@@ -70,8 +70,6 @@ npm run dev
   Open <a href="http://localhost:3000">http://localhost:3000</a> in your browser to see the application.
 </p>
 
-<hr />
-
 <h2>🔌 Backend Setup</h2>
 
 <p>
