@@ -1,5 +1,7 @@
+import { NoteColor } from "./NoteColor"
+
 export type Note = {
     id: number
-    title: string
+    color: NoteColor
     content: string
 }
