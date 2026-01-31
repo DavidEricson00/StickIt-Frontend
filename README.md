@@ -32,6 +32,19 @@
   <li>Fetch API</li>
 </ul>
 
+<h2>🖼 Screenshots</h2>
+
+<div align="center">
+    <img src="https://i.imgur.com/H2ajzWa.png" alt="print1">
+</div>
+
+<div align="center">
+    <img src="https://i.imgur.com/zDTRXV9.png" alt="print2">
+</div>
+
+<div align="center">
+    <img src="https://i.imgur.com/KB68jwg.png" alt="print3">
+</div>
 
 <h2>📁 Project Structure</h2>
 <pre>
