@@ -41,7 +41,7 @@ export default function Sidebar ({
 
             <button
                 onClick={onCreate}
-                className="w-9 h-9 rounded-full bg-black flex items-center justify-center text-3xl text-white cursor-pointer"
+                className="w-9 h-9 rounded-full bg-black flex items-center justify-center text-3xl text-white cursor-pointer hover:scale-110 transition-transform"
             >
                 +
             </button>
@@ -51,7 +51,7 @@ export default function Sidebar ({
                     <button 
                         key={color}
                         onClick={() => onSelectColor(color)}
-                        className="w-8 h-8 cursor-pointer rounded-full"
+                        className="w-8 h-8 cursor-pointer rounded-full hover:scale-110 transition-transform"
                         style={{
                             backgroundColor: getNoteColorHex(color),
                             boxShadow:
