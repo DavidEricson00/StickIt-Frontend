@@ -13,7 +13,7 @@ export default function NoteCard({ note, onClick }: NoteCardProps){
         <div 
             onClick={onClick}
             className="
-                w-64 h-50
+                w-64 h-54
                 rounded-xs
                 shadow-sm
                 cursor-pointer
