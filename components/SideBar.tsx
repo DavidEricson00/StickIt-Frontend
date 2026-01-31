@@ -4,6 +4,7 @@ import { NoteColor } from "@/types/NoteColor"
 import { getNoteColorHex } from "@/utils/getNoteColorHex"
 import icon from "@/assets/icon.svg";
 import Image from "next/image";
+import { darkenHex } from "@/utils/darkenHex";
 
 const COLORS: NoteColor[] = [
   NoteColor.GREEN,
@@ -46,13 +47,13 @@ export default function Sidebar ({
                     <button 
                         key={color}
                         onClick={() => onSelectColor(color)}
-                        className={`w-8 h-8 cursor-pointer rounded-full border ${
-                            selectedColor === color
-                            ? "ring-zinc-400"
-                            : "border-zinc-400"
-                        }`}
+                        className="w-8 h-8 cursor-pointer rounded-full"
                         style={{
-                            backgroundColor: getNoteColorHex(color)
+                            backgroundColor: getNoteColorHex(color),
+                            boxShadow:
+                            selectedColor === color
+                                ? `0 0 0 3px ${darkenHex(getNoteColorHex(color), 80)}`
+                                : "none"
                         }}
                     />
                 ))}
