@@ -75,7 +75,7 @@ npm run dev
 <p>
   Backend repository:
   <a href="https://github.com/DavidEricson00/StickIt-Backend" target="_blank">
-    https://github.com/SEU_USUARIO/stickit-backend
+    https://github.com/DavidEricson00/StickIt-Backend
   </a>
 </p>
 
