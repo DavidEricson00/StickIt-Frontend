@@ -4,11 +4,14 @@ import { getNoteColorHex } from "@/utils/getNoteColorHex";
 import { useEffect, useState } from "react";
 import { getNotes, createNote, deleteNote } from "@/services/note.service";
 import { Note } from "@/types/Note";
+import { NoteColor } from "@/types/NoteColor";
+import Sidebar from "@/components/SideBar";
 
 
 export default function Home() {
   const [notes, setNotes] = useState<Note[]>([])
   const [loading, setLoading] = useState(true)
+  const [selectedColor, setSelectedColor] = useState<NoteColor>(NoteColor.YELLOW)
 
   useEffect(() => {
     getNotes()
@@ -31,22 +34,31 @@ export default function Home() {
   }
 
   return (
-    <main className="p-32">
-      <h1>StickIt!</h1>
+    <div>
+      <Sidebar
+        selectedColor={selectedColor}
+        onSelectColor={setSelectedColor}
+        onCreate={() => console.log("criar nota com " + selectedColor )}
+      />
 
-      {notes.length === 0 && <p>Nenhuma nota ainda</p>}
-    
-      <ul>
-        {notes.map(note => (
-          <li key={note.id} className="mb-16">
-            <p className="text-black" style={{ backgroundColor: getNoteColorHex(note.color) }}>{note.content}</p>
+      <main className="pl-64 p-32 bg-zinc-50 min-h-screen">
+        <h1>StickIt!</h1>
 
-            <button onClick={() => handleDelete(note.id)} className="cursor-pointer">
-              Excluir
-            </button>
-          </li>
-        ))}
-      </ul>
+        {notes.length === 0 && <p>Nenhuma nota ainda</p>}
+      
+        <ul>
+          {notes.map(note => (
+            <li key={note.id} className="mb-16">
+              <p className="text-black" style={{ backgroundColor: getNoteColorHex(note.color) }}>{note.content}</p>
+
+              <button onClick={() => handleDelete(note.id)} className="cursor-pointer">
+                Excluir
+              </button>
+            </li>
+          ))}
+        </ul>
     </main>
+    </div>
+
   );
 }
