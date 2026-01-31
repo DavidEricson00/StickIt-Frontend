@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1>StickIt</h1>
 
-## Getting Started
+<p>
+  <strong>StickIt</strong> is a web-based sticky notes application. The project was built with a focus on practical learning,
+  clean UI design, and full integration between a modern frontend and a RESTful backend.
+</p>
 
-First, run the development server:
+<p>
+  The frontend is developed using <strong>Next.js</strong>, while the backend is powered by
+  <strong>Spring Boot</strong>, following a simple and extensible architecture.
+</p>
 
-```bash
+<h2>✨ Features</h2>
+<ul>
+  <li>Create new notes with a selected color</li>
+  <li>Color-coded notes for better organization</li>
+  <li>Edit notes using an in-place modal</li>
+  <li>Persist notes through a REST API</li>
+  <li>Delete notes</li>
+  <li>Responsive grid-based layout</li>
+  <li>Instant UI updates without page reloads</li>
+  <li>Minimal and intuitive user interface</li>
+</ul>
+
+<h2>🧱 Technologies</h2>
+
+<ul>
+  <li>Next.js (App Router)</li>
+  <li>React</li>
+  <li>TypeScript</li>
+  <li>Tailwind CSS</li>
+  <li>Fetch API</li>
+</ul>
+
+
+<h2>📁 Project Structure</h2>
+<pre>
+src/
+├─ app/
+│   └─ page.tsx
+├─ components/
+│   ├─ Sidebar.tsx
+│   ├─ NoteCard.tsx
+│   └─ NoteModal.tsx
+├─ services/
+│   └─ note.service.ts
+├─ types/
+│   ├─ Note.ts
+│   └─ NoteColor.ts
+└─ utils/
+   ├─ getNoteColorHex.ts
+   └─ darkenHex.ts
+</pre>
+
+<h2>🚀 Getting Started (Frontend)</h2>
+
+<p>First, install the dependencies:</p>
+
+<pre>
+npm install
+</pre>
+
+<p>Then, run the development server:</p>
+
+<pre>
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+</pre>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<p>
+  Open <a href="http://localhost:3000">http://localhost:3000</a> in your browser to see the application.
+</p>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<hr />
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<h2>🔌 Backend Setup</h2>
 
-## Learn More
+<p>
+  Backend repository:
+  <a href="https://github.com/DavidEricson00/StickIt-Backend" target="_blank">
+    https://github.com/SEU_USUARIO/stickit-backend
+  </a>
+</p>
 
-To learn more about Next.js, take a look at the following resources:
+<p>
+  The backend is a Spring Boot application that exposes a REST API for managing notes.
+  Make sure the backend server is running before using the frontend.
+</p>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<p>
+  By default, the frontend expects the API to be available at:
+</p>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<pre>
+http://localhost:8080
+</pre>
