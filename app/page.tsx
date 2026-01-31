@@ -30,6 +30,20 @@ export default function Home() {
     }
   }
 
+  async function handleCreate() {
+    try {
+      const newNote = await createNote({
+        color: selectedColor,
+        content: ""
+      } as Note )
+
+      setNotes(prev => [newNote, ...prev])
+    } catch (error) {
+      console.error(error)
+    }
+    
+  }
+
   if(loading) {
     return <p>Carregando...</p>
   }
@@ -39,7 +53,7 @@ export default function Home() {
       <Sidebar
         selectedColor={selectedColor}
         onSelectColor={setSelectedColor}
-        onCreate={() => console.log("criar nota com " + selectedColor )}
+        onCreate={() => handleCreate()}
       />
 
       <main className="pl-48 p-16 bg-zinc-50 min-h-screen">
