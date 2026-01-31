@@ -2,6 +2,8 @@
 
 import { NoteColor } from "@/types/NoteColor"
 import { getNoteColorHex } from "@/utils/getNoteColorHex"
+import icon from "@/assets/icon.svg";
+import Image from "next/image";
 
 const COLORS: NoteColor[] = [
   NoteColor.GREEN,
@@ -24,7 +26,13 @@ export default function Sidebar ({
 }: SidebarProps) {
     return(
         <aside className="fixed left-0 top-0 h-screen w-24 bg-white border-r border-zinc-200 flex flex-col items-center py-4 gap-8">
-            <span className="text-xl font-semibold">StickIt!</span>
+            <Image
+                src={icon}
+                alt="App icon"
+                width={64}
+                height={64}
+                quality={100}
+            />
 
             <button
                 onClick={onCreate}
