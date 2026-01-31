@@ -27,13 +27,17 @@ export default function Sidebar ({
 }: SidebarProps) {
     return(
         <aside className="fixed left-0 top-0 h-screen w-24 bg-white border-r border-zinc-200 flex flex-col items-center py-4 gap-8">
-            <Image
-                src={icon}
-                alt="App icon"
-                width={64}
-                height={64}
-                quality={100}
-            />
+            <div className="flex-col items-center justify-center">
+                <Image
+                    src={icon}
+                    alt="App icon"
+                    width={64}
+                    height={64}
+                    quality={100}
+                />
+                <hr className="w-100% border-zinc-300"/>
+            </div>
+
 
             <button
                 onClick={onCreate}
